@@ -8,16 +8,28 @@
         <Version>1.0.1</Version>
         <RepositoryUrl>https://github.com/TheR7angelo/AutoUpdaterWpf</RepositoryUrl>
         <PackageTags>wpf;update</PackageTags>
+        <Title>AutoUpdaterWpf</Title>
+        <PackageProjectUrl>https://github.com/TheR7angelo/AutoUpdaterWpf</PackageProjectUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageReleaseNotes>clean up and add some overload</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Autoupdater.NET.Official" Version="1.7.7" />
-      <PackageReference Include="Markdig" Version="0.31.0" />
-      <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
+        <PackageReference Include="Autoupdater.NET.Official" Version="1.7.7"/>
+        <PackageReference Include="Markdig" Version="0.31.0"/>
+        <PackageReference Include="System.Data.SQLite" Version="1.0.117"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Sql\" />
+        <Folder Include="Sql\"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
