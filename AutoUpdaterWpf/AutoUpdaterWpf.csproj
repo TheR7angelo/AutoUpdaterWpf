@@ -15,13 +15,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autoupdater.NET.Official" Version="1.7.7"/>
-        <PackageReference Include="Markdig" Version="0.31.0"/>
-        <PackageReference Include="System.Data.SQLite" Version="1.0.117"/>
+        <PackageReference Include="Autoupdater.NET.Official" Version="1.7.7" />
+        <PackageReference Include="Markdig" Version="0.31.0" />
+        <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Sql\"/>
+        <Folder Include="Sql\" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -29,7 +29,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
+        <None Include="LICENSE.txt" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using Markdig;
 
 namespace AutoUpdaterWpf;
 
-public class AutoUpdaterWpf
+public class Updater
 {
     private string ApplicationName { get; }
     private SqlHandler? SqlHandler { get; set; }
@@ -15,7 +15,7 @@ public class AutoUpdaterWpf
     private static string? HtmlFile { get; set; }
     public Version LastVersion { get; private set; } = new(0, 0, 0, 0);
 
-    public AutoUpdaterWpf(string applicationName)
+    public Updater(string applicationName)
     {
         ApplicationName = applicationName;
         Directory.CreateDirectory(TempDirectory);
@@ -26,7 +26,7 @@ public class AutoUpdaterWpf
         AutoUpdater.DownloadPath = TempDirectory;
     }
     
-    public AutoUpdaterWpf(string dataBaseFilePath, string applicationName)
+    public Updater(string dataBaseFilePath, string applicationName)
     {
         ApplicationName = applicationName;
         Directory.CreateDirectory(TempDirectory);
