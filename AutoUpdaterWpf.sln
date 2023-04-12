@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdaterWpf", "AutoUpdaterWpf\AutoUpdaterWpf.csproj", "{0AF9E1AB-6677-4961-BE75-AC90F0E041EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutoUpdaterWpf", "TestAutoUpdaterWpf\TestAutoUpdaterWpf.csproj", "{5DE6F717-C621-4F4C-9C25-ED691533168B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{0AF9E1AB-6677-4961-BE75-AC90F0E041EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF9E1AB-6677-4961-BE75-AC90F0E041EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF9E1AB-6677-4961-BE75-AC90F0E041EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE6F717-C621-4F4C-9C25-ED691533168B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE6F717-C621-4F4C-9C25-ED691533168B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE6F717-C621-4F4C-9C25-ED691533168B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE6F717-C621-4F4C-9C25-ED691533168B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
