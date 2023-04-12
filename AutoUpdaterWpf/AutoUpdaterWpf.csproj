@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <Authors>TheR7angelo</Authors>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <RepositoryUrl>https://github.com/TheR7angelo/AutoUpdaterWpf</RepositoryUrl>
         <PackageTags>wpf;update</PackageTags>
         <Title>AutoUpdaterWpf</Title>
