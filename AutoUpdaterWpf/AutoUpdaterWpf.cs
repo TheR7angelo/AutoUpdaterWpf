@@ -6,32 +6,39 @@ using Markdig;
 
 namespace AutoUpdaterWpf;
 
-public class Updater
+public class AutoUpdaterWpf
 {
+    private string ApplicationName { get; }
     private SqlHandler? SqlHandler { get; set; }
     private static string TempDirectory => Path.GetFullPath("AutoUpdater");
-    public static string? HtmlFile { get; private set; }
-
+    private static string? HtmlFile { get; set; }
     public Version LastVersion { get; private set; } = new(0, 0, 0, 0);
 
-    public Updater(string? dataBaseFilePath=null)
+    public AutoUpdaterWpf(string applicationName)
     {
+        ApplicationName = applicationName;
         Directory.CreateDirectory(TempDirectory);
 
         var jsonPath = Path.Combine(TempDirectory, "Settings.json");
         AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
 
         AutoUpdater.DownloadPath = TempDirectory;
-        
-        if (dataBaseFilePath is null) return;
-        
+    }
+    
+    public AutoUpdaterWpf(string dataBaseFilePath, string applicationName)
+    {
+        ApplicationName = applicationName;
+        Directory.CreateDirectory(TempDirectory);
+
+        var jsonPath = Path.Combine(TempDirectory, "Settings.json");
+        AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+
+        AutoUpdater.DownloadPath = TempDirectory;
+
         SqlHandler = new SqlHandler(dataBaseFilePath);
     }
 
-    public void SetDataBaseFilePath(string filePath)
-    {
-        SqlHandler = new SqlHandler(filePath);
-    }
+    public void SetDataBaseFilePath(string filePath) => SqlHandler = new SqlHandler(filePath);
 
     public string? GenerateXmlFile(string applicationName)
     {
@@ -97,6 +104,13 @@ public class Updater
     }
 
     public void Start(string xmlPath) => AutoUpdater.Start(xmlPath);
+
+    public void Start()
+    {
+        var xmlFile = GenerateXmlFile(ApplicationName);
+        if (xmlFile is null) return;
+        Start(xmlFile);
+    }
 
     public void ShowChangelog()
     {
