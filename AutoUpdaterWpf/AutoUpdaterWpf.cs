@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Xml.Linq;
 using AutoUpdaterDotNET;
+using AutoUpdaterWpf.Object.Enum;
 using Markdig;
 
 namespace AutoUpdaterWpf;
@@ -85,22 +86,14 @@ public class AutoUpdaterWpf
         File.WriteAllText(file, markDownLines);
     }
 
-    public void SetAutoUpdater(AutoUpdaterParameterShowing parameter, bool value)
+    public void SetAutoUpdater(EParameterShowing parameter, bool value)
     {
-        switch (parameter)
-        {
-            case AutoUpdaterParameterShowing.ShowSkipButton:
-                AutoUpdater.ShowSkipButton = value;
-                break;
-            case AutoUpdaterParameterShowing.ReportErrors:
-                AutoUpdater.ReportErrors = value;
-                break;
-            case AutoUpdaterParameterShowing.LetUserSelectRemindLater:
-                AutoUpdater.LetUserSelectRemindLater = value;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(parameter), parameter, null);
-        }
+        var propertyName = parameter.ToString();
+        var property = typeof(AutoUpdater).GetProperty(propertyName);
+        if (property == null)
+            throw new ArgumentException($"Invalid parameter: {parameter}", nameof(parameter));
+
+        property.SetValue(null, value);
     }
 
     public void Start(string xmlPath) => AutoUpdater.Start(xmlPath);
@@ -120,11 +113,4 @@ public class AutoUpdaterWpf
         browser.SetSource(HtmlFile);
         browser.ShowDialog();
     }
-}
-
-public enum AutoUpdaterParameterShowing
-{
-    ReportErrors,
-    ShowSkipButton,
-    LetUserSelectRemindLater
 }
