@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EditorConfigFiles Include="objj\Debug\net7.0\TestAutoUpdaterWpf.GeneratedMSBuildEditorConfig.editorconfig" />
+      <EditorConfigFiles Include="obj\Debug\net7.0\TestAutoUpdaterWpf.GeneratedMSBuildEditorConfig.editorconfig" />
     </ItemGroup>
 
 </Project>
