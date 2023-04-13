@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using System.Xml.Linq;
 using AutoUpdaterDotNET;
 using AutoUpdaterWpf.Object.Enum;
@@ -41,18 +42,18 @@ public class Updater
 
     public void SetDataBaseFilePath(string filePath) => SqlHandler = new SqlHandler(filePath);
 
-    public string? GenerateXmlFile(string applicationName)
+    public string? GenerateXmlFile()
     {
         if (SqlHandler?.Connection is null) return null;
 
-        var data = SqlHandler.GetXmlData(applicationName);
+        var data = SqlHandler.GetXmlData(ApplicationName);
 
         if (data is null) return null;
 
         LastVersion = data.Value.Version;
 
-        GenerateMarkDownFile(data.Value.MarkDown, applicationName);
-        HtmlFile = GenerateHtmlFile(data.Value.MarkDown, applicationName);
+        GenerateMarkDownFile(data.Value.MarkDown, ApplicationName);
+        HtmlFile = GenerateHtmlFile(data.Value.MarkDown, ApplicationName);
 
         var document = new XDocument
         (
@@ -64,7 +65,7 @@ public class Updater
             )
         );
 
-        var file = Path.Combine(TempDirectory, $"{applicationName}.xml");
+        var file = Path.Combine(TempDirectory, $"{ApplicationName}.xml");
         document.Save(file);
 
         return file;
@@ -88,19 +89,21 @@ public class Updater
 
     public void SetAutoUpdater(EParameterShowing parameter, bool value)
     {
-        var propertyName = parameter.ToString();
-        var property = typeof(AutoUpdater).GetProperty(propertyName);
-        if (property == null)
-            throw new ArgumentException($"Invalid parameter: {parameter}", nameof(parameter));
+        AutoUpdater.ShowSkipButton = true;
+        
+        var fieldName = parameter.ToString();
+        var field = typeof(AutoUpdater).GetField(fieldName);
+        if (field == null)
+            throw new ArgumentException($"Invalid parameter: {fieldName}", nameof(parameter));
 
-        property.SetValue(null, value);
+        field.SetValue(null, value);
     }
 
     public void Start(string xmlPath) => AutoUpdater.Start(xmlPath);
 
     public void Start()
     {
-        var xmlFile = GenerateXmlFile(ApplicationName);
+        var xmlFile = GenerateXmlFile();
         if (xmlFile is null) return;
         Start(xmlFile);
     }
